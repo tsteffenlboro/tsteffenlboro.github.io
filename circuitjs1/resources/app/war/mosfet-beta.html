@@ -1,0 +1,65 @@
+<html xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"><head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252"><style>#header + #content > #left > #rlblock_left,
+#content > #right > .dose > .dosesingle,
+#content > #center > .dose > .dosesingle
+{display:none !important;}</style><style>img[src="http://s05.flagcounter.com/count/pTvk/bg=FFFFFF/txt=000000/border=CCCCCC/columns=6/maxflags=36/viewers=0/labels=0/"]
+{display:none !important;}</style>
+<!--[if gte mso 9]><xml>
+<mso:CustomDocumentProperties>
+<mso:display_urn_x003a_schemas-microsoft-com_x003a_office_x003a_office_x0023_Editor msdt:dt="string">Thomas Steffen</mso:display_urn_x003a_schemas-microsoft-com_x003a_office_x003a_office_x0023_Editor>
+<mso:Order msdt:dt="string">5427400.00000000</mso:Order>
+<mso:ComplianceAssetId msdt:dt="string"></mso:ComplianceAssetId>
+<mso:_ExtendedDescription msdt:dt="string"></mso:_ExtendedDescription>
+<mso:display_urn_x003a_schemas-microsoft-com_x003a_office_x003a_office_x0023_Author msdt:dt="string">Thomas Steffen</mso:display_urn_x003a_schemas-microsoft-com_x003a_office_x003a_office_x0023_Author>
+<mso:TriggerFlowInfo msdt:dt="string"></mso:TriggerFlowInfo>
+<mso:ContentTypeId msdt:dt="string">0x0101004A6E44CEB208A74DABF2AAF8BA6F2C27</mso:ContentTypeId>
+<mso:_SourceUrl msdt:dt="string"></mso:_SourceUrl>
+<mso:_SharedFileIndex msdt:dt="string"></mso:_SharedFileIndex>
+</mso:CustomDocumentProperties>
+</xml><![endif]-->
+<title></title></head><body><h1>MOSFET Beta</h1>
+We use a parameter called "beta" to describe the behavior of a MOSFET.  The default value is small (20m), which is appropriate for a signal MOSFET.  To simulate
+a power MOSFET, use a larger value like 80.
+<p>
+In the saturation region, I<sub>ds</sub> = beta * (V<sub>gs</sub> - V<sub>t</sub>)<sup>2</sup>/2.
+<p>
+This worksheet will calculate the value of beta for a particular MOSFET, given Rds(on).
+<p>
+
+<script>
+
+
+function units(x) {
+	 x = x.trim();
+   if (x.match(/m$/)) {
+       x = x.replace(/m$/, "");
+  	return .001 * x;
+   }
+   // don't think we need this but you never know
+   if (x.match(/u$/)) {
+       x = x.replace(/u$/, "");
+       return 1e-6 * x;
+   }
+   
+   return x;
+}
+
+function calc() {
+   var rds = units(document.getElementById('rds').value);
+   var vgs = units(document.getElementById('vgs').value);
+   var vt = units(document.getElementById('vt').value);
+   var beta = Math.abs(1/(rds*(vgs-vt)));
+   document.getElementById('result').innerHTML = "beta = " + beta;
+}
+
+</script>
+<form action="/action_page.php">
+  R<sub>DS</sub>(on) (&#x2126;) (use typical value): <input type="text" id="rds" oninput="calc()"><br>
+  V<sub>GS</sub> where measured (V): <input type="text" id="vgs" oninput="calc()"><br>
+  Threshold (V) (use typical value): <input type="text" id="vt" oninput="calc()"><br>
+</form>
+<div id="result">
+
+</div>
+
+</body></html>

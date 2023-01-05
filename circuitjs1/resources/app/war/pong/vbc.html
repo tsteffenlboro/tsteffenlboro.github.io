@@ -1,0 +1,56 @@
+<meta name="viewport" content="width=820">
+<title></title>
+<link rel="SHORTCUT ICON" href="favicon.ico">
+<link rel="stylesheet" href="pong.css" type="text/css">
+<html xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"><head>
+<!--[if gte mso 9]><xml>
+<mso:CustomDocumentProperties>
+<mso:display_urn_x003a_schemas-microsoft-com_x003a_office_x003a_office_x0023_Editor msdt:dt="string">Thomas Steffen</mso:display_urn_x003a_schemas-microsoft-com_x003a_office_x003a_office_x0023_Editor>
+<mso:Order msdt:dt="string">5453800.00000000</mso:Order>
+<mso:ComplianceAssetId msdt:dt="string"></mso:ComplianceAssetId>
+<mso:_ExtendedDescription msdt:dt="string"></mso:_ExtendedDescription>
+<mso:display_urn_x003a_schemas-microsoft-com_x003a_office_x003a_office_x0023_Author msdt:dt="string">Thomas Steffen</mso:display_urn_x003a_schemas-microsoft-com_x003a_office_x003a_office_x0023_Author>
+<mso:TriggerFlowInfo msdt:dt="string"></mso:TriggerFlowInfo>
+<mso:ContentTypeId msdt:dt="string">0x0101004A6E44CEB208A74DABF2AAF8BA6F2C27</mso:ContentTypeId>
+<mso:_SourceUrl msdt:dt="string"></mso:_SourceUrl>
+<mso:_SharedFileIndex msdt:dt="string"></mso:_SharedFileIndex>
+</mso:CustomDocumentProperties>
+</xml><![endif]-->
+</head><body>
+<hr>
+<div class="split">
+<div id="split-0">
+<iframe id="circuitFrame" src="../circuitjs.html?startCircuit=vbc.txt&mouseMode=DragAll"></iframe>
+</div>
+<div id="split-1">
+<div id="info"></div>
+Here is a closer look at the vertical ball control.  At lower right is the value being loaded into the
+vertical ball counter when it resets.  When it's equal to 10, the ball does not move vertically.  When it's
+less than 10, the ball moves down, and when it's greater than 10, the ball moves up.
+<p>
+When the ball bounces off the top or bottom of the screen, VBLANK and VVID are both high at the same time.
+You can manually bring VBLANK high using the switch near the bottom middle.  This causes the ball to switch
+direction.
+<p>
+When there's a hit, HIT goes high, and then the paddle position relative to the ball is used to control
+the vertical speed.  When 256H is high, meaning the right side of the screen,
+paddle 2's position is used (D2, C2, B2) and when 256H is low,
+paddle 1's position is used.  The low bit (A1, A2) is not used.  The middle of the paddle is 8 (1000) so
+that results in a value of 10 (the ball doesn't move vertically).  The edges of the paddle are 0000 or 1111
+so those result in a value of 7 or 13 (the ball moves at maximum vertical speed).
+<p>
+If ATTRACT is high, then the ball moves at maximum vertical speed (7 or 13).
+<p>
+Next: <a href="vonly.html">Playing The Game (Vertical Only)</a>.
+<p>
+<a href="index.html">Index</a>
+</div>
+
+<script type="module">
+
+import Split from './split.js';
+
+Split(['#split-0', '#split-1'], { sizes: [70, 30] });
+
+</script>
+

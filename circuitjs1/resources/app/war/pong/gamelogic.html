@@ -1,0 +1,52 @@
+<meta name="viewport" content="width=820">
+<title></title>
+<link rel="SHORTCUT ICON" href="favicon.ico">
+<link rel="stylesheet" href="pong.css" type="text/css">
+<html xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"><head>
+<!--[if gte mso 9]><xml>
+<mso:CustomDocumentProperties>
+<mso:display_urn_x003a_schemas-microsoft-com_x003a_office_x003a_office_x0023_Editor msdt:dt="string">Thomas Steffen</mso:display_urn_x003a_schemas-microsoft-com_x003a_office_x003a_office_x0023_Editor>
+<mso:Order msdt:dt="string">5456000.00000000</mso:Order>
+<mso:ComplianceAssetId msdt:dt="string"></mso:ComplianceAssetId>
+<mso:_ExtendedDescription msdt:dt="string"></mso:_ExtendedDescription>
+<mso:display_urn_x003a_schemas-microsoft-com_x003a_office_x003a_office_x0023_Author msdt:dt="string">Thomas Steffen</mso:display_urn_x003a_schemas-microsoft-com_x003a_office_x003a_office_x0023_Author>
+<mso:TriggerFlowInfo msdt:dt="string"></mso:TriggerFlowInfo>
+<mso:ContentTypeId msdt:dt="string">0x0101004A6E44CEB208A74DABF2AAF8BA6F2C27</mso:ContentTypeId>
+<mso:_SourceUrl msdt:dt="string"></mso:_SourceUrl>
+<mso:_SharedFileIndex msdt:dt="string"></mso:_SharedFileIndex>
+</mso:CustomDocumentProperties>
+</xml><![endif]-->
+</head><body>
+<hr>
+<div class="split">
+<div id="split-0">
+<iframe id="circuitFrame" src="../circuitjs.html?startCircuit=gamelogic.txt&mouseMode=DragAll"></iframe>
+</div>
+<div id="split-1">
+<div id="info"></div>
+Here is the circuit that keeps track of whether a game is running.  It uses discrete transistors rather
+than chips to implement a latch.  When the coin switch is briefly pressed, it brings SRST high for a short
+time, and also brings <span class="overline">RUN</span> low, which turns off attract mode and starts
+the game.
+<p>
+When STOP G is asserted at the top left, that turns off the latch and brings <span class="overline">RUN</span> high.
+<p>
+The "Antenna" input is intended to prevent free games initiated by a static shock to, say, the coin logic.  If you
+apply a voltage to "Antenna" by clicking the logic input in the lower right, it will stop the game.
+<p>
+A buffer has been added to this circuit to convert from TTL to CMOS logic (since the logic gates in this simulator
+have a threshold of 2.5 V, but the original circuit used TTL gates).
+<p>
+Next: <a href="serve.html">Serve Timer</a>.
+<p>
+<a href="index.html">Index</a>
+</div>
+
+<script type="module">
+
+import Split from './split.js';
+
+Split(['#split-0', '#split-1'], { sizes: [70, 30] });
+
+</script>
+

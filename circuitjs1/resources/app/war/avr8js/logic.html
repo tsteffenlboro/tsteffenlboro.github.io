@@ -1,0 +1,47 @@
+<!DOCTYPE html><html lang="en" xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta http-equiv="X-UA-Compatible" content="ie=edge"><title></title><link href="//fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet"><link rel="stylesheet" href="src.avr8js.css">
+<!--[if gte mso 9]><xml>
+<mso:CustomDocumentProperties>
+<mso:display_urn_x003a_schemas-microsoft-com_x003a_office_x003a_office_x0023_Editor msdt:dt="string">Thomas Steffen</mso:display_urn_x003a_schemas-microsoft-com_x003a_office_x003a_office_x0023_Editor>
+<mso:Order msdt:dt="string">5449600.00000000</mso:Order>
+<mso:ComplianceAssetId msdt:dt="string"></mso:ComplianceAssetId>
+<mso:_ExtendedDescription msdt:dt="string"></mso:_ExtendedDescription>
+<mso:display_urn_x003a_schemas-microsoft-com_x003a_office_x003a_office_x0023_Author msdt:dt="string">Thomas Steffen</mso:display_urn_x003a_schemas-microsoft-com_x003a_office_x003a_office_x0023_Author>
+<mso:TriggerFlowInfo msdt:dt="string"></mso:TriggerFlowInfo>
+<mso:ContentTypeId msdt:dt="string">0x0101004A6E44CEB208A74DABF2AAF8BA6F2C27</mso:ContentTypeId>
+<mso:_SourceUrl msdt:dt="string"></mso:_SourceUrl>
+<mso:_SharedFileIndex msdt:dt="string"></mso:_SharedFileIndex>
+</mso:CustomDocumentProperties>
+</xml><![endif]-->
+</head><body> <h2>AVR8js CircuitJS1 Demo</h2> <div style="width:50%;position:fixed;left:0;">
+
+<iframe id="circuitFrame" width="95%" height="800" src="../circuitjs.html?startCircuit=avr8js-logic.txt&running=false"></iframe>
+<p> <a href="index.html">LED strobe</a>, <a href="logic.html">Logic</a>, <a href="analog.html">Analog Read</a></p>
+
+</div> <div style="width:50%;position:fixed;right:0;"> 
+<p>Click Run below to start the simulation.</p>
+<div class="toolbar"> <button id="run-button">Run</button> <button id="stop-button" disabled="">Stop</button> <button id="revert-button">Back to initial example</button> <div class="spacer"></div> <div id="status-label"></div> </div> <div class="code-editor"></div> <div class="compiler-output"> <pre id="compiler-output-text"></pre> <pre id="serial-output-text"></pre> </div> </div> <script src="//cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.21.2/min/vs/loader.js"></script> <script>
+
+window.defaultCode=`
+void setup() {
+  Serial.begin(115200);
+
+  // create labeled node with name "pin n" to access input pins
+  pinMode(8, INPUT);
+  pinMode(9, INPUT);
+
+  // create external voltage (javascript) with name "pin n" to access output pins
+  pinMode(10, OUTPUT);
+  pinMode(11, OUTPUT);
+  pinMode(12, OUTPUT);
+}
+
+void loop() {
+  int a = digitalRead(8);
+  int b = digitalRead(9);
+  digitalWrite(10, a & b);
+  digitalWrite(11, a | b);
+  digitalWrite(12, a ^ b);
+}
+`;
+
+</script> <script src="src.avr8js.js"></script> </body></html>
