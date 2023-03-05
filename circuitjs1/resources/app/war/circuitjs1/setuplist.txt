@@ -1,6 +1,8 @@
 ### setuplist.txt first line must be a comment
 +Electrification
 ev-hv.txt HV System of an EV
+ev-hv800.txt 800V HV System
+ev-lv48.txt 48V LV System
 -
 +Power Electronics
 Hbridge.txt Half Bridge
