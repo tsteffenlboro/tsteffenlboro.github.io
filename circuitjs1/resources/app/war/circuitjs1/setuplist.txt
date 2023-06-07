@@ -1,8 +1,12 @@
 ### setuplist.txt first line must be a comment
 +Electrification
-ev-hv.txt HV System of an EV
-ev-hv800.txt 800V HV System
-ev-lv48.txt 48V LV System
+et-potential.txt Electric Potential
+et-volt.txt Voltage Source and Meter
+et-dc.txt DC circuit
+et-ac.txt AC circuit
+et-switch.txt Switched Circuit
+et-ev-hv.txt HV System of an EV
+et-ev-lv48.txt LV System
 -
 +Power Electronics
 Hbridge.txt Half Bridge
